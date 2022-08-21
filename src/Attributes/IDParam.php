@@ -28,9 +28,9 @@ class IDParam extends Parameter
         // If the object has a Property(Type::STRING, isObjectId: true), use the type of the property
         if (class_exists($paramType)) {
             $reflection = new \ReflectionClass($paramType);
-            $attributes = $reflection->getAttributes();
+
             $paramType = array_reduce(
-                $attributes,
+                array_merge($reflection->getAttributes(), $reflection->getParentClass()?->getAttributes() ?? []),
                 function (?string $previous, \ReflectionAttribute $attribute) {
                     if ($previous) {
                         return $previous;
