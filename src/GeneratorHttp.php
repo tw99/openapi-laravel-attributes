@@ -135,7 +135,9 @@ class GeneratorHttp
                         return null;
                     }
                     $instance = $attributes[0]->newInstance();
-                    $instance->setName($param->getName());
+                    if (!$instance->getName()) {
+                        $instance->setName($param->getName());
+                    }
                     $instance->setParamType((string)$param->getType());
                     return $instance;
                 },

@@ -18,8 +18,13 @@ class IDParam extends Parameter
         ?string $description = null,
         string $in = 'path',
         ?bool $required = null,
+        ?string $name = null,
     ) {
         parent::__construct($description, $in, $required);
+
+        if ($name) {
+            $this->setName($name);
+        }
     }
 
     public function setParamType(string $paramType): void
