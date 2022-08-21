@@ -46,6 +46,8 @@ class PathMethodBuilder
      */
     public function setRequestBody(RequestBody $requestBody): void
     {
+        $this->saveSchemaHolder();
+
         $this->currentSchemaHolder = $requestBody;
     }
 
