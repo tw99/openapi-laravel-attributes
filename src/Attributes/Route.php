@@ -30,7 +30,8 @@ class Route implements JsonSerializable
         private string $method,
         private string $route,
         private array $tags = [],
-        private string $summary = ''
+        private string $summary = '',
+        private string $operationId = '',
     ) {
         //
     }
@@ -96,6 +97,10 @@ class Route implements JsonSerializable
 
         if ($this->summary) {
             $array[$this->getRoute()][$this->method]['summary'] = $this->summary;
+        }
+
+        if ($this->operationId) {
+            $array[$this->getRoute()][$this->method]['operationId'] = $this->operationId;
         }
 
         if (count($this->getParams) > 0) {

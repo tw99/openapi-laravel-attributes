@@ -10,8 +10,8 @@ use JetBrains\PhpStorm\Pure;
 #[Attribute]
 class DELETE extends Route {
     #[Pure]
-    public function __construct(string $route, array $tags = [], string $summary = '')
+    public function __construct(string $route, array $tags = [], string $summary = '', string $operationId = '')
     {
-        parent::__construct(self::DELETE, $route, $tags, $summary);
+        parent::__construct(self::DELETE, $route, $tags, $summary, $operationId);
     }
 }
