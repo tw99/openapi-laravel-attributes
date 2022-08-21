@@ -27,13 +27,13 @@ class SecurityScheme implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            $this->securityKey => [
+            $this->securityKey => array_filter([
                 'type' => $this->type,
                 'name' => $this->name,
                 'in' => $this->in,
                 'bearerFormat' => $this->bearerFormat,
                 'scheme' => $this->scheme,
-            ],
+            ]),
         ];
     }
 }
