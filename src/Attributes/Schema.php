@@ -20,7 +20,8 @@ class Schema implements JsonSerializable
     public function __construct(
         private string $schemaType = SchemaType::OBJECT,
         private ?array $required = null,
-        private ?string $name = null
+        private ?string $name = null,
+        private array $extra = [],
     ) {
         //
     }
@@ -49,9 +50,9 @@ class Schema implements JsonSerializable
 
     public function jsonSerialize(): array
     {
-       $schema = [
+       $schema = array_merge([
            'type' => $this->schemaType
-       ];
+       ], $this->extra);
 
         if ($this->schemaType === SchemaType::ARRAY) {
             $schema += json_decode(json_encode(reset($this->properties)), true);
